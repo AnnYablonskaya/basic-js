@@ -14,31 +14,40 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function transform(arr) {
-  let newArr = [];
+  let fin = [];
+
   if (!Array.isArray(arr))
     throw new Error(`'arr' parameter must be an instance of the Array!`);
   else if( arr.length === 0){
     return [];
   }
+
+  let disn = "--discard-next";
+  let disp = "--discard-prev";
+  let dobn = "--double-next";
+  let dobp = "--double-prev"
  for (let i = 0; i < arr.length; i++){
    switch(arr[i]){
-     case "--discard-next":
-       i +=2;
+     case disn:
+       i ++;
        break;
-      case "--discard-prev":
-        newArr.pop();
+      case disp:
+        fin.pop();
         break;
-      case "--double-next":
-        newArr.push(arr[i+1]);
+      case dobn:
+        fin.push(arr[i+1]);
         break;
-      case "--double-prev":
-        newArr.push(arr[i - 1]); 
+      case dobp:
+        fin.push(arr[i - 1]); 
         break;
+        default:
+        fin.push(arr[i]);
    }
  }
- return newArr;
+ return fin;
 }
 
 module.exports = {
   transform
 };
+
