@@ -14,7 +14,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function transform(arr) {
-  let fin = [];
 
   if (!Array.isArray(arr)){
     throw new Error(`'arr' parameter must be an instance of the Array!`);
@@ -27,22 +26,22 @@ function transform(arr) {
   let doublen = "--double-next";
   let doublep = "--double-prev";
 for (let i = 0; i < arr.length; i++){
-  switch(arr[i]){
-    case discardn:
-      i ++;
-      break;
-      case discardp:
-        array.pop();
+    switch(arr[i]){
+      case discardn:
+        i +=2;
         break;
-      case doublen:
-        if(arr[i + 1]){ array.push(arr[i + 1]);} 
-        break;
-      case doublep:
-        if(array[i - 1]){ array.push(arr[i - 1]);} 
-        break;
-        default:
-          array.push(arr[i]);
-  }
+        case discardp:
+          array.pop();
+          break;
+        case doublen:
+          if (arr[i + 1]) {array.push(arr[i + 1]);}
+          break;
+        case doublep:
+          if (i > 0) {array.push(array[array.length - 1]);}
+          break;
+          default:
+            array.push(arr[i]);
+    }
 }
 return array;
 }
