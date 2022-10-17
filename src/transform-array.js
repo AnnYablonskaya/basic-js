@@ -13,38 +13,38 @@ const { NotImplementedError } = require('../extensions/index.js');
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
  * 
  */
-function transform(/*arr*/) {
-//   let fin = [];
+function transform(arr) {
+  let fin = [];
 
-//   if (!Array.isArray(arr)){
-//     throw new Error(`'arr' parameter must be an instance of the Array!`);
-//   }else if( arr.length === 0){
-//     return [];
-//   }
-
-//   let disn = "--discard-next";
-//   let disp = "--discard-prev";
-//   let dobn = "--double-next";
-//   let dobp = "--double-prev"
-// for (let i = 0; i < arr.length; i++){
-//   switch(arr[i]){
-//     case disn:
-//       i ++;
-//       break;
-//       case disp:
-//         fin.pop();
-//         break;
-//       case dobn:
-//         fin.push(arr[i+1]);
-//         break;
-//       case dobp:
-//         fin.push(arr[i - 1]); 
-//         break;
-//         default:
-//         fin.push(arr[i]);
-//   }
-// }
-// return fin;
+  if (!Array.isArray(arr)){
+    throw new Error(`'arr' parameter must be an instance of the Array!`);
+  }else if( arr.length === 0){
+    return [];
+  }
+  let array = [];
+  let discardn = "--discard-next";
+  let discardp = "--discard-prev";
+  let doublen = "--double-next";
+  let doublep = "--double-prev";
+for (let i = 0; i < arr.length; i++){
+  switch(arr[i]){
+    case discardn:
+      i +=2;
+      break;
+      case discardp:
+        array.pop();
+        break;
+      case doublen:
+        if(array[ i + 1]){ array.push(arr[i - 1]);} 
+        break;
+      case doublep:
+        if(array[ i - 1]){ array.push(arr[i - 1]);} 
+        break;
+        default:
+          array.push(arr[i]);
+  }
+}
+return array;
 }
 
 module.exports = {
