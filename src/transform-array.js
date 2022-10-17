@@ -29,16 +29,16 @@ function transform(arr) {
 for (let i = 0; i < arr.length; i++){
   switch(arr[i]){
     case discardn:
-      i +=2;
+      i ++;
       break;
       case discardp:
         array.pop();
         break;
       case doublen:
-        if(array[ i + 1]){ array.push(arr[i - 1]);} 
+        if(arr[i + 1]){ array.push(arr[i + 1]);} 
         break;
       case doublep:
-        if(array[ i - 1]){ array.push(arr[i - 1]);} 
+        if(array[i - 1]){ array.push(arr[i - 1]);} 
         break;
         default:
           array.push(arr[i]);
